@@ -1,16 +1,16 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "springboot-resources.fullname" . -}}
+{{- $fullName := include "backend-resources.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- $ingressApiIsStable := eq (include "springboot-resources.ingress.isStable" .) "true" -}}
-{{- $ingressSupportsIngressClassName := eq (include "springboot-resources.ingress.supportsIngressClassName" .) "true" -}}
-{{- $ingressSupportsPathType := eq (include "springboot-resources.ingress.supportsPathType" .) "true" -}}
+{{- $ingressApiIsStable := eq (include "backend-resources.ingress.isStable" .) "true" -}}
+{{- $ingressSupportsIngressClassName := eq (include "backend-resources.ingress.supportsIngressClassName" .) "true" -}}
+{{- $ingressSupportsPathType := eq (include "backend-resources.ingress.supportsPathType" .) "true" -}}
 {{- $ingressPathType := .Values.ingress.pathType -}}
 kind: Ingress
-apiVersion: {{ include "springboot-resources.ingress.apiVersion" . }}
+apiVersion: {{ include "backend-resources.ingress.apiVersion" . }}
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "springboot-resources.labels" . | nindent 4 }}
+    {{- include "backend-resources.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
